@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { instance } from "../../api/allForApi"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import "./ComingSoon.scss"
 
 import 'swiper/css';
@@ -11,6 +12,7 @@ import { Autoplay } from 'swiper/modules';
 
 
 const ComingSoon = () => {
+    const locDelCom = useLocation()
     const [ comingMovies, setDataOfSoonMovies ] = useState([])
 
     useEffect(() => {
@@ -18,7 +20,7 @@ const ComingSoon = () => {
             .then(res => setDataOfSoonMovies(res.data.results))
             .catch(error => console.log(error))
     }, [])
-  return (
+  return locDelCom.pathname.includes('/movie-view') ? <></> : (
     <div className='coming_soon'>
         <div className="container">
             <div className="cm_itm">

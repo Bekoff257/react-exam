@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react'
 import { instance } from "../../api/allForApi"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
 
 function Futurestic() {
+    const locDel = useLocation()
     const [ futuresStic, setDataFuturestic ] = useState([])
 
     useEffect(() => {
@@ -17,7 +19,7 @@ function Futurestic() {
             .then(response => setDataFuturestic(response.data.results))
             .catch(err => console.log(err))
     }, [])
-  return (
+  return locDel.pathname.includes('/movie-view') ? <></> : (
     <div className='futurestic'>
         <div className="container">
             <div className="ft_itm">

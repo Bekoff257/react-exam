@@ -7,8 +7,10 @@ import "./Premiere.scss"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
+import { useLocation } from 'react-router-dom';
 
 function Premiere() {
+    const locComDel = useLocation()
     const [ prmData, setPrmData ] = useState([])
 
     useEffect(() => {
@@ -16,7 +18,7 @@ function Premiere() {
             .then(res => setPrmData(res.data.results))
             .catch(err => console.log(err))
     }, [])
-  return (
+  return locComDel.pathname.includes('/movie-view') ? <></> : (
     <div className='premiere'>
         <div className="container">
             <div className="prm_item">
