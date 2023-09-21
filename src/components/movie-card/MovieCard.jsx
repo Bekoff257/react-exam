@@ -14,7 +14,9 @@ function MovieCard() {
 
   useEffect(() => {
     instance(`/discover/movie?&with_genres=28`)
-      .then(response => setMovieList(response.data.results))
+      .then(response => {
+        setMovieList(response.data.results)
+      })
       .catch(err => console.error(err))
   }, [])
 

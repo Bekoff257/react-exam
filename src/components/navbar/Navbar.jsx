@@ -23,7 +23,7 @@ const Navbar = () => {
     <div className='navbar'>
       <div className="navbar_cont">
         <div className="nav_left">
-          <img src={logo} alt="" />
+          <Link to='/'><img src={logo} alt="" /></Link>
           <ul className='menu_list'>
             <li><Link to='/'>HOME</Link></li>
             <li><Link>TV-SHOWS</Link></li>

@@ -7,12 +7,15 @@ import 'swiper/css/pagination';
 import "./Main.scss"
 import { GrPlayFill } from "react-icons/gr"
 import { Link, useLocation } from 'react-router-dom';
+import loadingSpinner from "../../assests/loading_spin.svg"
 
 function Main() {
   const bannerLocation = useLocation()
   const [bannerMain, setBannerMain] = useState([]);
+  const [ isLoading, setLoading ] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     axios
       .get('https://api.themoviedb.org/3/movie/top_rated?&with_networks=213', {
         headers: {
@@ -22,9 +25,11 @@ function Main() {
       })
       .then((response) => {
         setBannerMain(response.data.results);
+        setLoading(false)
         console.log(response.data.results);
       })
       .catch((err) => {
+        setLoading(false)
         console.error(err);
       });
   }, []);
@@ -41,6 +46,7 @@ function Main() {
         loop={true}
         modules={[Pagination, Autoplay, Navigation]} className="mySwiper">
         {bannerMain.map((movie) => (
+          isLoading ? <h2>Loading... </h2> :
           <SwiperSlide>
             <div className="img_content-title">
               <Link to={`/movie-view/${movie.id}`}>
