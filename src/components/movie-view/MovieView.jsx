@@ -37,7 +37,7 @@ function MovieView() {
                         <h4>Chiqarilgan sana: {viewMov.release_date}</h4>
                     </div>
                     <p>{viewMov.vote_average} kishi ovoz bergan</p>
-                    <h3 className='language'>Til: {viewMov.original_language}</h3>
+                    <h3 className='language'>Til: {String(viewMov.original_language).toUpperCase()}</h3>
                 </div>
             </div>
         </div>
